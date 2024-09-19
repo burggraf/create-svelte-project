@@ -1,7 +1,7 @@
 Scaffold:
 
 - Svelte5
-- ShadCN
+- ShadCN-Svelte
 - Supabase
 
 Features:
