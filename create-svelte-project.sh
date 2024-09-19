@@ -123,6 +123,31 @@ cat > components.json << EOL
 }
 EOL
 
+
+cat > src/app.d.ts << EOL
+// See https://kit.svelte.dev/docs/types#app
+// for information about these interfaces
+// and what to do when importing types
+declare namespace App {
+	// interface Locals {}
+	// interface PageData {}
+	// interface Error {}
+	// interface Platform {}
+}
+declare const __APP_VERSION__: string
+declare const __APP_NAME__: string
+declare const __APP_HOMEPAGE__: string
+declare const __APP_DESCRIPTION__: string
+declare const __APP_MENU_TITLE__: string
+declare const __APP_MENU_SUBTITLE__: string
+declare const __APP_PROFILE_TABLE__: string
+declare const __APP_PROFILE_KEY__: string
+declare const __APP_THEME_COLOR__: string
+declare const __APP_BACKGROUND_COLOR__: string
+EOL
+
+
+
 # Create necessary directories
 mkdir -p src/lib/components src/lib/utils
 
@@ -149,12 +174,17 @@ cat > src/App.svelte << EOL
 <script lang="ts">
 import { Button } from "\$lib/components/ui/button";
 let counter = \$state(0)
+const app_version = __APP_VERSION__
+const app_name = __APP_NAME__
 </script>
 
 <main class="container mx-auto p-4">
   <h1 class="text-3xl font-bold mb-4">Welcome to Svelte5 with shadcn-svelte</h1>
   <Button onclick={()=>counter++}>Click me</Button>
   <br/>Counter: {counter}
+  <br/>
+  <p class="text-sm text-gray-500 mt-4">App version: {app_version}</p>
+  <p class="text-sm text-gray-500">App name: {app_name}</p>
 </main>
 EOL
 
